@@ -1,12 +1,14 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import session from "express-session";
+import handlebars from "express-handlebars";
 import FileStore from "session-file-store";
+import sessionRouter from 2.
 import MongoStore from "connect-mongo";
 
 //import MongoStore from "connect-mongo";
 //como conectaremos session con lo que sera nuestro filestore
-const fileStore = FileStore(session)
+const fileStorage = FileStore(session)
 
 const app = express();
 const PORT = 8080;
@@ -21,7 +23,7 @@ app.use(cookieParser());// va a intaractuar ocn las cokkis
   * */
 app.use(
   session({
-    //store: new fileStore({path:'./session', ttl:100, retrie:0}),
+    //store: new fileStorage({path:'./session', ttl:100, retrie:0}),
     store: MongoStore.create({
       mongoUrl:
         "mongodb+srv://salvagerar:G3rard0@coderhouse.vwdjz98.mongodb.net/?retryWrites=true&w=majority&appName=Coderhouse",
@@ -51,4 +53,5 @@ app.listen(PORT, () => {
 
 
 /*
+mongodb+srv://salvagerar:G3rard0@coderhouse.vwdjz98.mongodb.net/?retryWrites=true&w=majority&appName=Coderhouse
 */
